@@ -1,0 +1,26 @@
+#scrapeBtn {
+    float: right;
+    margin-right: 10px;
+}
+
+#viewSavedBtn {
+    float: right;
+}
+
+body {
+    background: lightskyblue;
+}
+
+.card {
+    background: lightgrey;
+    margin-bottom: 5px;
+    width: 90%;
+}
+
+.note-text {
+    font-style: italic;
+}
+
+.summary-text {
+    font-size: 22px;
+}
