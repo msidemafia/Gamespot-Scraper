@@ -6,30 +6,32 @@ module.exports = function (app) {
   // route for scraping the Gamespot website for articles
   app.get("/scrape", function (req, res) {
     console.log('request worked!');
-    axios.get("https://www.gamespot.com/news/").then(function (response) {
+    axios.get("https://www.theonion.com/").then(function (response) {
       var $ = cheerio.load(response.data);
       var resultArray = [];
       console.log('second console log');
-      $("article.media-article").each(function (i, element) {
+      $("article.postlist__item").each(function (i, element) {
         var result = {};
         result.title = $(this)
+          .children("header")
+          .children("h1")
           .children("a")
-          .children("div.media-body")
-          .children("h3")
           .text();
         result.summary = $(this)
-          .children("a")
-          .children("div.media-body")
+          .children("div.item__content")
+          .children("div.entry-summary")
           .children("p")
           .text();
-        result.link = "https://www.gamespot.com" + $(this)
+        result.link = $(this)
+          .children("header")
+          .children("h1")
           .children("a")
           .attr("href");
         resultArray.push(result);
       });
       res.send(resultArray);
     })
-    .catch(err => console.log(err.response));
+      .catch(err => console.log(err.response));
   });
 
   // Route for saving an article
@@ -58,3 +60,35 @@ module.exports = function (app) {
       .catch(err => res.json(err));
   });
 };
+
+
+
+
+
+// app.get("/scrape", function (req, res) {
+//   console.log('request worked!');
+//   axios.get("https://www.gamespot.com/news/").then(function (response) {
+//     var $ = cheerio.load(response.data);
+//     var resultArray = [];
+//     console.log('second console log');
+//     $("article.media-article").each(function (i, element) {
+//       var result = {};
+//       result.title = $(this)
+//         .children("a")
+//         .children("div.media-body")
+//         .children("h3")
+//         .text();
+//       result.summary = $(this)
+//         .children("a")
+//         .children("div.media-body")
+//         .children("p")
+//         .text();
+//       result.link = "https://www.gamespot.com" + $(this)
+//         .children("a")
+//         .attr("href");
+//       resultArray.push(result);
+//     });
+//     res.send(resultArray);
+//   })
+//   .catch(err => console.log(err.response));
+// });
