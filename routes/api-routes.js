@@ -9,7 +9,7 @@ module.exports = function (app) {
     axios.get("https://www.gamespot.com/news/").then(function (response) {
       var $ = cheerio.load(response.data);
       var resultArray = [];
-
+      console.log('second console log');
       $("article.media-article").each(function (i, element) {
         var result = {};
         result.title = $(this)
