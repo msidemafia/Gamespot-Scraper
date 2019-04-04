@@ -4,7 +4,7 @@ var db = require("../models");
 
 module.exports = function (app) {
   // route for scraping the Gamespot website for articles
-  app.get("/api/scrape", function (req, res) {
+  app.get("/scrape", function (req, res) {
     console.log('request worked!');
     axios.get("https://www.gamespot.com/news/").then(function (response) {
       var $ = cheerio.load(response.data);

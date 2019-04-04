@@ -2,7 +2,7 @@
 $(document).on("click", "#scrapeBtn", function () {
     console.log("sup");
     $('#article-list').empty();
-    $.get("/api/scrape", response => {
+    $.get("/scrape", response => {
         console.log(response);
         for (i = 0; i < response.length; i++) {
 
