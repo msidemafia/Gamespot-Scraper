@@ -27,7 +27,8 @@ module.exports = function (app) {
         resultArray.push(result);
       });
       res.send(resultArray);
-    });
+    })
+    .catch(err => res.json(err));
   });
 
   // Route for saving an article
