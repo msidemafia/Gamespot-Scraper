@@ -8,7 +8,11 @@ Also, add and save any comments about the saved article you would like.
 NPM packages used:
 
 Express
+
 Express-handlebars
+
 Cheerio
+
 Axios
+
 Mongoose
